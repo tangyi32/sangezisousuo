@@ -1,113 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+        <h1>泰国三个字梦书</h1>
+        <p style="font-size: 30px;">3Dအိမ်မက်စာအုပ်</p>
     <title>图片搜索</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        #searchInput {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        #gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .image-item {
-            width: 100%;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        .image-item:hover {
-            transform: scale(1.05);
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1>泰国三个字梦书</h1>
-        <p><p style="font-size: 30px;">3Dအိမ်မက်စာအုပ်</p>
-        <input type="text" id="searchInput" placeholder="输入关键词搜索...">
+        <input type="text" id="searchInput" placeholder="搜索图片..." />
         <div id="gallery"></div>
     </div>
+
     <script src="script.js"></script>
-</body>
 
-</html>
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网页带二维码</title>
-    <style>
-        /* 页面整体样式 */
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* 二维码容器 */
-        .qrcode-container {
-            position: fixed; /* 固定在页面角落 */
-            top: 10px; /* 距离顶部 10px */
-            right: 10px; /* 右上角（改成 left: 10px 就变成左上角） */
-            text-align: center;
-            background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 二维码图片 */
-        .qrcode-container img {
-            width: 100px; /* 控制二维码大小 */
-            height: auto;
-        }
-
-        /* 文字描述 */
-        .qrcode-container p {
-            margin: 5px 0 0;
-            font-size: 14px;
-            color: #333;
-            
-}
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 二维码区域 -->
-    <div class="qrcode-container">
-        <img src="https://github.com/tangyi32/sangezi/blob/main/photo_2025-03-10_12-14-21.jpg?raw=true" alt="二维码下面的字"
-    <p></p>
-    <p>有问题或者翻译错误，可以加微信反应</p>
+    <div id="top-right-corner">
+        <img src="https://github.com/tangyi32/sangezi/blob/63bea7c4c1579f39717379bba0f994ce6182244f/photo_2025-03-10_12-14-21.jpg?raw=true" alt="二维码" id="qr-code">
+        <p id="qr-text">如有问题反应，可加微信</p>
     </div>
 
 </body>
 </html>
+  

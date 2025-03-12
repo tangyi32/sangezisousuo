@@ -9,7 +9,7 @@ body {
 
 /* 容器样式 */
 .container {
-    max-width: 800px;
+    max-width: 1000px; /* 增大容器宽度 */
     margin: 0 auto;
     background: white;
     padding: 20px;
@@ -24,25 +24,30 @@ h1 {
 
 /* 搜索框样式 */
 #searchInput {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    width: 60%;  /* 增加宽度 */
+    padding: 12px;
+    margin: 20px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    box-sizing: border-box; /* 确保 padding 不影响宽度 */
+    display: block;
+    margin-left: auto;
+    margin-right: auto; /* 居中显示 */
 }
 
 /* 图片展示区域 */
 #gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);  /* 每行显示 4 张图片 */
+    gap: 20px;
     margin-top: 20px;
 }
 
 /* 图片样式 */
 .image-item {
     width: 100%;
+    text-align: center;
     border-radius: 8px;
     transition: transform 0.3s;
 }
@@ -50,9 +55,39 @@ h1 {
 .image-item:hover {
     transform: scale(1.05);
 }
-.big-text {
-    font-size: 24px; 
-    font-weight: bold; /* 加粗，可选 */
-    color: rgba(255, 0, 81, 0.812); /* 改变颜色（可选） */
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;  /* 最大宽度设置为 200px */
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
+.image-item p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+/* 设置二维码和文字容器 */
+#top-right-corner {
+    position: fixed;  /* 使用 fixed 定位，使元素固定在页面右上角 */
+    top: 20px;        /* 距离页面顶部 20px */
+    right: 20px;      /* 距离页面右边 20px */
+    text-align: center; /* 让文字和二维码居中对齐 */
+    z-index: 1000;    /* 确保元素层级在其他内容之上 */
+}
+
+/* 设置二维码的大小 */
+#qr-code {
+    width: 100px;  /* 设置二维码的宽度 */
+    height: 120px; /* 设置二维码的高度 */
+    margin-bottom: 10px;  /* 二维码和文字之间的间距 */
+}
+
+/* 设置文字样式 */
+#qr-text {
+    font-size: 14px;  /* 文字大小 */
+    color: #333;      /* 文字颜色 */
+    margin-top: 5px;   /* 文字和二维码之间的间距 */
+}
