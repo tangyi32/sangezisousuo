@@ -19,7 +19,7 @@ body {
 
 /* 标题样式 */
 h1 {
-    color: #333;
+    color: rgb(153, 16, 32);
 }
 
 /* 搜索框样式 */
@@ -39,9 +39,10 @@ h1 {
 /* 图片展示区域 */
 #gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* 每行显示 4 张图片 */
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
     margin-top: 20px;
+
 }
 
 /* 图片样式 */
@@ -72,8 +73,8 @@ h1 {
 /* 设置二维码和文字容器 */
 #top-right-corner {
     position: fixed;  /* 使用 fixed 定位，使元素固定在页面右上角 */
-    top: 20px;        /* 距离页面顶部 20px */
-    right: 20px;      /* 距离页面右边 20px */
+    top: 12px;        /* 距离页面顶部 20px */
+    right: 14px;      /* 距离页面右边 20px */
     text-align: center; /* 让文字和二维码居中对齐 */
     z-index: 1000;    /* 确保元素层级在其他内容之上 */
 }
