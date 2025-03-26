@@ -1,40 +1,71 @@
-let images = [];
+let images = []; // 存储所有图片
+const limit = 100; // 每页 100 张
+let currentPage = 0; // 当前页码（0 = 000-099，1 = 100-199 ...）
+let searchQuery = ""; // 搜索关键词
 
-// 读取 images.json 文件
+// 读取 images.json
 fetch("images.json")
-    .then(response => response.json()) // 解析 JSON
+    .then(response => response.json())
     .then(data => {
         images = data;
-        displayImages(images); // 显示图片
+        createPagination(); // 生成分页按钮
+        loadImages(); // 默认加载第一页
     })
     .catch(error => console.error("加载 JSON 失败:", error));
 
-// 显示图片
-function displayImages(imageList) {
-    const gallery = document.getElementById("gallery");
-    gallery.innerHTML = ""; // 清空当前的图片展示
+// 生成分页按钮（000-099，100-199 ...）
+function createPagination() {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = ""; // 清空旧分页
 
+    for (let i = 0; i < 10; i++) {
+        const start = i * limit;
+        const end = start + limit - 1;
+        const button = document.createElement("button");
+        button.textContent = `${start.toString().padStart(3, '0')}-${end.toString().padStart(3, '0')}`;
+        button.onclick = () => changePage(i);
+        pagination.appendChild(button);
+    }
+}
+
+// 切换页面
+function changePage(page) {
+    currentPage = page;
+    searchQuery = ""; // 清空搜索
+    document.getElementById("searchInput").value = ""; // 清空输入框
+    loadImages();
+}
+
+// 加载图片
+function loadImages() {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = ""; // 清空旧数据
+
+    // 计算起始索引
+    const startIndex = currentPage * limit;
+    const endIndex = startIndex + limit;
+
+    // 过滤符合搜索条件的图片
+    const imageList = images
+        .filter(img => searchQuery === "" || img.keywords.some(kw => kw.includes(searchQuery)))
+        .slice(startIndex, endIndex);
+
+    // 显示图片
     imageList.forEach(img => {
         const imageContainer = document.createElement("div");
         imageContainer.classList.add("image-item");
 
         const imgElement = document.createElement("img");
         imgElement.src = img.url;
-        imgElement.alt = img.text; // 设置 alt 属性为图片描述
+        imgElement.alt = img.text;
+        imgElement.loading = "lazy";
+        imgElement.style.maxWidth = "200px";  
+        imgElement.style.width = "100%";      
         imageContainer.appendChild(imgElement);
 
-        // 设置图片的最大宽度为 200px
-        imgElement.style.maxWidth = "200px";  // 通过 JavaScript 设置最大宽度
-        imgElement.style.width = "100%";      // 让图片自适应容器宽度
-
-        // 设置图片容器的宽度和其他样式
-        imageContainer.style.textAlign = "center";  // 图片居中显示
-        imageContainer.style.display = "block";
-
-        // 添加文字描述
         const caption = document.createElement("p");
         caption.textContent = img.text;
-        caption.style.marginTop = "10px";  // 文字与图片间隔
+        caption.style.marginTop = "10px";  
         caption.style.fontSize = "16px";
         caption.style.color = "#555";
         imageContainer.appendChild(caption);
@@ -43,26 +74,20 @@ function displayImages(imageList) {
     });
 }
 
-// 搜索图片
+// 搜索功能
 function searchImages() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-
-    // 过滤符合关键词的图片
-    const filteredImages = images.filter(img => 
-        img.keywords.some(kw => kw.toLowerCase().includes(query))
-    );
-
-    // 显示匹配的图片
-    displayImages(filteredImages);
+    searchQuery = document.getElementById("searchInput").value.trim().toLowerCase();
+    currentPage = 0; // 搜索后从第一页开始
+    loadImages();
 }
 
-// 页面加载时显示所有图片
-document.addEventListener("DOMContentLoaded", () => {
-    // 确保图片数据加载完成后再调用 displayImages
-    if (images.length > 0) {
-        displayImages(images);
+// 禁用右键和 F12
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+    if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+        e.preventDefault();
     }
-
-    // 监听输入框的变化，实时搜索
-    document.getElementById("searchInput").addEventListener("input", searchImages);
 });
+
+// 监听搜索输入框
+document.getElementById("searchInput").addEventListener("input", searchImages);
