@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>图片搜索</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFV14FFH8D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GFV14FFH8D');
+    </script>
+</head>
+
+<body>
     <div class="container">
         <h1>泰国三个字梦书</h1>
         <p style="font-size: 20px;">3Dအိမ်မက်စာအုပ်</p>
-        <div id="pagination"></div> <!-- 分页按钮容器 -->
-        <title>图片搜索</title>
-    </div>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- 只保留一个搜索框 -->
+
+        <div id="pagination"></div>
+
         <input type="text" id="searchInput" placeholder="搜索图片..." />
         <div id="gallery"></div>
     </div>
